@@ -3,9 +3,11 @@ This is a Cesium plugin that adds to the Cesium map a user friendly compass, nav
 distance scale graphical user interface.
 
 **Why did you build it?**
-**为什么你建立cesium-navigation插件？**
+
 First of all the Cesiumjs sdk does not includes a compass, navigator (zoom in/out), and distance scale. You can use the mouse to navigate on the map, but this navigation plugin offers more navigation control and capabilities to the user. Some of the capabilities are: reset the compass to point to north, reset the orbit, and
 reset the view to a default bound.
+
+**为什么你建立cesium-navigation插件？**
 
 首先，所有的Cesiumjs sdk 不包括罗盘，导航仪（放大/缩小）和距离刻度。您可以使用鼠标在地图上导航，但这个导航插件可为用户提供更多的导航控制和功能。其中一些功能是：将罗盘重置为指向北部，重置轨道，并将视图重置为默认边界。
 

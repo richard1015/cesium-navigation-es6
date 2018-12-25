@@ -4,7 +4,7 @@ distance scale graphical user interface.
 
 项目运行图
 
-![预览](https://img2018.cnblogs.com/blog/600701/201812/600701-20181223155729893-61243794.png "demo.png")
+![预览](https://images.gitee.com/uploads/images/2018/1225/213021_f1c8ae75_1353184.png "demo.png")
 
 **Why did you build it?**
 

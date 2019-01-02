@@ -51,13 +51,6 @@ options.enableCompassOuterRing= true;
 let viewer = new Cesium.Viewer("cesiumContainer");
 CesiumNavigation(viewer, options);
 ```
- 
- **Is there a demo using the plugin ?**
-
-This is the demo:
-
-(https://github.com/richard1015/cesium-vue)
-
 
 参考文章
 https://www.jianshu.com/p/dd364b59b774

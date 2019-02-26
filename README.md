@@ -3,7 +3,7 @@ This is a Cesium plugin that adds to the Cesium map a user friendly compass, nav
 distance scale graphical user interface.
 
 ###项目运行图
-[https://yjxt.zhuzhida.vip]()
+[http://yjxt.zhuzhida.vip]()
 
 ![预览](https://images.gitee.com/uploads/images/2018/1225/213021_f1c8ae75_1353184.png "demo.png")
 

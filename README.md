@@ -53,6 +53,11 @@ let viewer = new Cesium.Viewer("cesiumContainer");
 CesiumNavigation(viewer, options);
 ```
 
+
+
+## Other Cesium Pulgin 
+[cesium-print /github](https://github.com/richard1015/cesium-print)
+
 ### 参考文章
 [https://www.jianshu.com/p/dd364b59b774](https://www.jianshu.com/p/dd364b59b774)  
 

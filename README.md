@@ -4,7 +4,7 @@ distance scale graphical user interface.
 
 
 ## Demo
-[cesium pulgin /demo](https://richard1015.github.io/cesium/)
+[cesium plugin /demo](https://richard1015.github.io/cesium/)
 # Code Demo
 [https://github.com/richard1015/cesium-vue-example /(cesium-print,cesium-navigation-es6)](https://github.com/richard1015/cesium-vue-example/blob/master/src/components/CesiumViewer.vue)
 
@@ -58,7 +58,7 @@ CesiumNavigation(viewer, options);
 
 
 
-## Other Cesium Pulgin 
+## Other Cesium Plugin 
 [cesium-print /github](https://github.com/richard1015/cesium-print)
 
 ### 参考文章

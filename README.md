@@ -2,10 +2,13 @@
 This is a Cesium plugin that adds to the Cesium map a user friendly compass, navigator (zoom in/out), and
 distance scale graphical user interface.
 
-###项目运行图
-[http://yjxt.zhuzhida.vip](http://yjxt.zhuzhida.vip)
 
-![预览](https://images.gitee.com/uploads/images/2018/1225/213021_f1c8ae75_1353184.png "demo.png")
+## Demo
+[cesium pulgin /demo](https://richard1015.github.io/cesium/)
+# Code Demo
+[https://github.com/richard1015/cesium-vue-example /(cesium-print,cesium-navigation-es6)](https://github.com/richard1015/cesium-vue-example/blob/master/src/components/CesiumViewer.vue)
+
+![预览](https://github.com/richard1015/richard1015.github.io/blob/master/static/image/cesium-navigation-es6.png "demo.png")
 
 **Why did you build it?**
 

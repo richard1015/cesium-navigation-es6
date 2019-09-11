@@ -1,6 +1,6 @@
 import Cesium from 'cesium/Cesium'
 import CesiumNavigation from './CesiumNavigation'
-import './styles/cesium-navigation.less'
+import './styles/cesium-navigation.css'
 
 var defined = Cesium.defined
 var defineProperties = Cesium.defineProperties

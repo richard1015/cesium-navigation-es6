@@ -1,4 +1,4 @@
-import Cesium from 'cesium/Cesium'
+import { defined, Math as CesiumMath, getTimestamp, EventHelper, Transforms, SceneMode, Cartesian2, Cartesian3, Matrix4, BoundingSphere, HeadingPitchRange, knockout } from 'cesium'
 import loadView from '../core/loadView'
 import ResetViewNavigationControl from './ResetViewNavigationControl'
 import ZoomNavigationControl from './ZoomNavigationControl'
@@ -6,18 +6,8 @@ import svgCompassOuterRing from '../svgPaths/svgCompassOuterRing'
 import svgCompassGyro from '../svgPaths/svgCompassGyro'
 import svgCompassRotationMarker from '../svgPaths/svgCompassRotationMarker'
 import Utils from '../core/Utils'
-var defined = Cesium.defined
-var CesiumMath = Cesium.Math
-var getTimestamp = Cesium.getTimestamp
-var EventHelper = Cesium.EventHelper
-var Transforms = Cesium.Transforms
-var SceneMode = Cesium.SceneMode
-var Cartesian2 = Cesium.Cartesian2
-var Cartesian3 = Cesium.Cartesian3
-var Matrix4 = Cesium.Matrix4
-var BoundingSphere = Cesium.BoundingSphere
-var HeadingPitchRange = Cesium.HeadingPitchRange
-var Knockout = Cesium.knockout
+// var CesiumMath = Math;
+var Knockout = knockout;
 
 var NavigationViewModel = function (options) {
   this.terria = options.terria
@@ -32,7 +22,7 @@ var NavigationViewModel = function (options) {
   if (!defined(this.controls)) {
     this.controls = [
       new ZoomNavigationControl(this.terria, true),
-      new ResetViewNavigationControl(this.terria),      
+      new ResetViewNavigationControl(this.terria),
       new ZoomNavigationControl(this.terria, false)
     ]
   }
@@ -74,7 +64,7 @@ var NavigationViewModel = function (options) {
     }
   }
 
-  function widgetChange () {
+  function widgetChange() {
     if (defined(that.terria)) {
       if (that._unsubcribeFromPostRender) {
         that._unsubcribeFromPostRender()
@@ -324,7 +314,7 @@ NavigationViewModel.create = function (options) {
   return result
 }
 
-function orbit (viewModel, compassElement, cursorVector) {
+function orbit(viewModel, compassElement, cursorVector) {
   var scene = viewModel.terria.scene
 
   var sscc = scene.screenSpaceCameraController
@@ -440,7 +430,7 @@ function orbit (viewModel, compassElement, cursorVector) {
     viewModel.orbitLastTimestamp = timestamp
   }
 
-  function updateAngleAndOpacity (vector, compassWidth) {
+  function updateAngleAndOpacity(vector, compassWidth) {
     var angle = Math.atan2(-vector.y, vector.x)
     viewModel.orbitCursorAngle = CesiumMath.zeroToTwoPi(angle - CesiumMath.PI_OVER_TWO)
 
@@ -484,7 +474,7 @@ function orbit (viewModel, compassElement, cursorVector) {
   updateAngleAndOpacity(cursorVector, compassElement.getBoundingClientRect().width)
 }
 
-function rotate (viewModel, compassElement, cursorVector) {
+function rotate(viewModel, compassElement, cursorVector) {
   var scene = viewModel.terria.scene
   var camera = scene.camera
 

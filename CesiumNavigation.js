@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
-import Cesium from 'cesium/Cesium'
+import { defined, defineProperties, Event, knockout, DeveloperError } from 'cesium'
 import registerKnockoutBindings from './core/registerKnockoutBindings'
 import DistanceLegendViewModel from './viewModels/DistanceLegendViewModel'
 import NavigationViewModel from './viewModels/NavigationViewModel'
 
-var defined = Cesium.defined
-var definedProperties = Cesium.defineProperties
-var CesiumEvent = Cesium.Event
-var Knockout = Cesium.knockout
-var DeveloperError = Cesium.DeveloperError
+
+var definedProperties = defineProperties
+var CesiumEvent = Event
+var Knockout = knockout
+
 /**
  * @alias CesiumNavigation
  * @constructor
@@ -77,7 +77,7 @@ CesiumNavigation.prototype.addOnDestroyListener = function (callback) {
  * @param {Viewer|CesiumWidget} viewerCesiumWidget The Viewer or CesiumWidget instance
  * @param options
  */
-function initialize (viewerCesiumWidget, options) {
+function initialize(viewerCesiumWidget, options) {
   if (!defined(viewerCesiumWidget)) {
     throw new DeveloperError('CesiumWidget or Viewer is required.')
   }

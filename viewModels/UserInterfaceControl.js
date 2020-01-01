@@ -1,9 +1,6 @@
-import Cesium from 'cesium/Cesium'
+import { defined, defineProperties, DeveloperError, knockout } from 'cesium'
 
-var defined = Cesium.defined
-var defineProperties = Cesium.defineProperties
-var DeveloperError = Cesium.DeveloperError
-var Knockout = Cesium.knockout
+var Knockout = knockout;
 /**
  * The view-model for a control in the user interface
  *
@@ -74,7 +71,7 @@ defineProperties(UserInterfaceControl.prototype, {
    * @memberOf UserInterfaceControl.prototype
    * @type {Terria}
    */
-   terria: {
+  terria: {
     get: function () {
       return this._terria
     }

@@ -1,12 +1,8 @@
 
-import Cesium from 'cesium/Cesium'
+import { defined, Camera, Rectangle, Cartographic } from 'cesium'
 import svgReset from '../svgPaths/svgReset'
 import NavigationControl from './NavigationControl'
 
-var defined = Cesium.defined
-var Camera = Cesium.Camera
-var Rectangle = Cesium.Rectangle
-var Cartographic = Cesium.Cartographic
 /**
  * The model for a zoom in control in the navigation control tool bar
  *
@@ -102,7 +98,7 @@ ResetViewNavigationControl.prototype.resetView = function () {
     } else if (typeof camera.flyHome === 'function') {
       camera.flyHome(1)
     } else {
-      camera.flyTo({'destination': Camera.DEFAULT_VIEW_RECTANGLE, 'duration': 1})
+      camera.flyTo({ 'destination': Camera.DEFAULT_VIEW_RECTANGLE, 'duration': 1 })
     }
   }
   this.isActive = false

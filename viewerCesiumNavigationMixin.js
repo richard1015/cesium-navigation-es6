@@ -1,10 +1,7 @@
-import Cesium from 'cesium/Cesium'
+import { defined, defineProperties, DeveloperError } from 'cesium'
 import CesiumNavigation from './CesiumNavigation'
-import './styles/cesium-navigation.css'
+// import './styles/cesium-navigation.css'
 
-var defined = Cesium.defined
-var defineProperties = Cesium.defineProperties
-var DeveloperError = Cesium.DeveloperError
 
 /**
  * A mixin which adds the Compass/Navigation widget to the Viewer widget.
@@ -23,7 +20,7 @@ var DeveloperError = Cesium.DeveloperError
  * var viewer = new Cesium.Viewer('cesiumContainer');
  * viewer.extend(viewerCesiumNavigationMixin);
  */
-function viewerCesiumNavigationMixin (viewer, options) {
+function viewerCesiumNavigationMixin(viewer, options) {
   if (!defined(viewer)) {
     throw new DeveloperError('viewer is required.')
   }

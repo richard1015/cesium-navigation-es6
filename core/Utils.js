@@ -1,12 +1,5 @@
 /* eslint-disable no-unused-vars */
-import Cesium from 'cesium/Cesium'
-
-var defined = Cesium.defined
-var Ray = Cesium.Ray
-var Cartesian3 = Cesium.Cartesian3
-var Cartographic = Cesium.Cartographic
-var ReferenceFrame = Cesium.ReferenceFrame
-var SceneMode = Cesium.SceneMode
+import { defined, Ray, Cartesian3, Cartographic, ReferenceFrame, SceneMode } from 'cesium'
 
 var Utils = {}
 

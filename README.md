@@ -36,9 +36,13 @@ $ npm install cesium-navigation-es6 --save
   <div id="cesiumContainer"></div>
 </template>
 <script type="text/javascript">
-import Cesium from "cesium/Cesium";
-import "cesium/Widgets/widgets.css";
+import {
+  Viewer
+} from "cesium";
+import "cesium/Build/Cesium/Widgets/widgets.css";
 import CesiumNavigation from "cesium-navigation-es6";
+
+let viewer = new Viewer("cesiumContainer");
 
 var options = {};
 // 用于在使用重置导航重置地图视图时设置默认视图控制。接受的值是Cesium.Cartographic 和 Cesium.Rectangle.
@@ -52,7 +56,6 @@ options.enableDistanceLegend= false;
 // 用于启用或禁用指南针外环。true是启用，false是禁用。默认值为true。如果将选项设置为false，则该环将可见但无效。
 options.enableCompassOuterRing= true;
 
-let viewer = new Cesium.Viewer("cesiumContainer");
 CesiumNavigation(viewer, options);
 ```
 

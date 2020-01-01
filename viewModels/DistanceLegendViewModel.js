@@ -1,13 +1,7 @@
 /* eslint-disable no-unused-vars */
-import Cesium from 'cesium/Cesium'
+import { defined, DeveloperError, EllipsoidGeodesic, Cartesian2, getTimestamp, EventHelper, knockout } from 'cesium'
 import loadView from '../core/loadView'
-var defined = Cesium.defined
-var DeveloperError = Cesium.DeveloperError
-var EllipsoidGeodesic = Cesium.EllipsoidGeodesic
-var Cartesian2 = Cesium.Cartesian2
-var getTimestamp = Cesium.getTimestamp
-var EventHelper = Cesium.EventHelper
-var Knockout = Cesium.knockout
+var Knockout = knockout
 
 var DistanceLegendViewModel = function (options) {
   if (!defined(options) || !defined(options.terria)) {
@@ -41,7 +35,7 @@ var DistanceLegendViewModel = function (options) {
 
   var that = this
 
-  function addUpdateSubscription () {
+  function addUpdateSubscription() {
     if (defined(that.terria)) {
       var scene = that.terria.scene
       that._removeSubscription = scene.postRender.addEventListener(function () {
@@ -99,7 +93,7 @@ var distances = [
   1000000, 2000000, 3000000, 5000000,
   10000000, 20000000, 30000000, 50000000]
 
-function updateDistanceLegendCesium (viewModel, scene) {
+function updateDistanceLegendCesium(viewModel, scene) {
   if (!viewModel.enableDistanceLegend) {
     viewModel.barWidth = undefined
     viewModel.distanceLabel = undefined

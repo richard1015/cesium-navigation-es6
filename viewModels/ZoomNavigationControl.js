@@ -1,11 +1,6 @@
-import Cesium from 'cesium/Cesium'
+import { defined, Ray, IntersectionTests, Cartesian3, SceneMode } from 'cesium'
 import NavigationControl from './NavigationControl'
 import Utils from '../core/Utils'
-var defined = Cesium.defined
-var Ray = Cesium.Ray
-var IntersectionTests = Cesium.IntersectionTests
-var Cartesian3 = Cesium.Cartesian3
-var SceneMode = Cesium.SceneMode
 
 /**
  * The model for a zoom in control in the navigation control tool bar

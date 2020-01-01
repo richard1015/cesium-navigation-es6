@@ -13,8 +13,6 @@
   "dependencies": {
     "cesium": "^1.52.0",
     "hammerjs": "^2.0.8",
-    "less": "^3.9.0",
-    "less-loader": "^4.1.0",
     "markdown-it": "^8.4.2",
     "markdown-it-sanitizer": "^0.4.3"
   },

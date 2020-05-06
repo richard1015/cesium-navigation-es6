@@ -38,8 +38,8 @@ $ npm install cesium-navigation-es6 --save
 <script type="text/javascript">
 import {
   Viewer,Rectangle
-} from "cesium";
-import "cesium/Build/Cesium/Widgets/widgets.css";
+} from "cesium/Source/Cesium.js";
+import 'cesium/Build/Cesium/Widgets/widgets.css';
 import CesiumNavigation from "cesium-navigation-es6";
 
 let viewer = new Viewer("cesiumContainer");

@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { defined, defineProperties, Event, knockout, DeveloperError } from 'cesium'
+import { defined, Event, knockout, DeveloperError } from 'cesium/Source/Cesium.js'
 import registerKnockoutBindings from './core/registerKnockoutBindings'
 import DistanceLegendViewModel from './viewModels/DistanceLegendViewModel'
 import NavigationViewModel from './viewModels/NavigationViewModel'
 
 
-var definedProperties = defineProperties
 var CesiumEvent = Event
 var Knockout = knockout
 

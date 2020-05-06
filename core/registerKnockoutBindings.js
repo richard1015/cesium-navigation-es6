@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { knockout, SvgPathBindingHandler } from 'cesium'
+import { knockout, SvgPathBindingHandler } from 'cesium/Source/Cesium.js'
 import KnockoutMarkdownBinding from './KnockoutMarkdownBinding'
 import KnockoutHammerBinding from './KnockoutHammerBinding'
 var Knockout = knockout

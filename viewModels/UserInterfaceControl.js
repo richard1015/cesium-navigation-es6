@@ -1,4 +1,4 @@
-import { defined, defineProperties, DeveloperError, knockout } from 'cesium'
+import { defined, DeveloperError, knockout } from 'cesium/Source/Cesium.js'
 
 var Knockout = knockout;
 /**
@@ -65,7 +65,7 @@ var UserInterfaceControl = function (terria) {
   Knockout.track(this, ['name', 'svgIcon', 'svgHeight', 'svgWidth', 'cssClass', 'isActive'])
 }
 
-defineProperties(UserInterfaceControl.prototype, {
+Object.defineProperties(UserInterfaceControl.prototype, {
   /**
    * Gets the Terria instance.
    * @memberOf UserInterfaceControl.prototype

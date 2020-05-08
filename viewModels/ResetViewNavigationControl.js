@@ -1,5 +1,5 @@
 
-import { defined, Camera, Rectangle, Cartographic } from 'cesium/Source/Cesium.js'
+import { defined, Camera, Rectangle, Cartographic ,Math as CesiumMath} from 'cesium/Source/Cesium.js'
 import svgReset from '../svgPaths/svgReset'
 import NavigationControl from './NavigationControl'
 
@@ -88,7 +88,7 @@ ResetViewNavigationControl.prototype.resetView = function () {
           camera.flyTo({
             destination: this.terria.options.defaultResetView,
             orientation: {
-              heading: Cesium.Math.toRadians(5.729578)
+              heading: CesiumMath.toRadians(5.729578)
             }
           })
         } catch (e) {

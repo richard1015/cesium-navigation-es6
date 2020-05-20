@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { defined, DeveloperError, EllipsoidGeodesic, Cartesian2, getTimestamp, EventHelper, knockout } from 'cesium/Source/Cesium.js'
+import { defined, DeveloperError, EllipsoidGeodesic, Cartesian2, getTimestamp, EventHelper, knockout } from 'cesium/Cesium'
 import loadView from '../core/loadView'
 var Knockout = knockout
 

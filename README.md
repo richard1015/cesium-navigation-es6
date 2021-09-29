@@ -53,7 +53,6 @@ $ npm install cesium-navigation-es6 --save
 ```
 
 ```javascript
-<script type="text/javascript">
 import {  Viewer,Rectangle} from "cesium";
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 import CesiumNavigation from "cesium-navigation-es6";
@@ -88,7 +87,6 @@ new CesiumNavigation(viewer, options);
 ```
 
 ```javascript
-<script type="text/javascript">
 import {  Viewer,Rectangle} from "cesium";
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 import CesiumNavigation from "cesium-navigation-es6";

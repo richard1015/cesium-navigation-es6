@@ -1,0 +1,1 @@
+const createFragmentFromTemplate=function(e){var t=document.createElement("div");t.innerHTML=e;for(var r=document.createDocumentFragment();t.firstChild;)r.appendChild(t.firstChild);return r};export default createFragmentFromTemplate;

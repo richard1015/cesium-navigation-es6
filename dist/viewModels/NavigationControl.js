@@ -1,0 +1,1 @@
+import UserInterfaceControl from"./UserInterfaceControl";var NavigationControl=function(o){UserInterfaceControl.apply(this,arguments)};NavigationControl.prototype=Object.create(UserInterfaceControl.prototype);export default NavigationControl;

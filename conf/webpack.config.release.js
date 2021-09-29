@@ -10,7 +10,7 @@ const plugins = [
     new CopyWebpackPlugin({
         patterns: [
             { from: 'src', to: '' },
-            { from: 'dist/CesiumNavigation.umd.js', to: path.resolve('./public') },//拷贝至静态目录测试umd
+            // { from: 'dist/CesiumNavigation.umd.js', to: path.resolve('./public') },//拷贝至静态目录测试umd
         ],
     }),
 ]

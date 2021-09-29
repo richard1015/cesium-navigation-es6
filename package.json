@@ -1,17 +1,20 @@
 {
   "name": "cesium-navigation-es6",
-  "version": "1.1.7",
+  "version": "1.2.0",
   "description": "cesium-navigation-es6",
-  "main": "viewerCesiumNavigationMixin.js",
+  "main": "dist/CesiumNavigation.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "taobao": "npm install --registry https://registry.npm.taobao.org",
+    "build": "node node_modules/webpack/bin/webpack.js --config  ./conf/webpack.config.build.js",
+    "release": "node node_modules/webpack/bin/webpack.js --config  ./conf/webpack.config.release.js",
+    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --config   ./conf/webpack.config.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/richard1015/cesium-navigation-es6.git"
   },
   "dependencies": {
-    "cesium": "^1.72.0",
+    "cesium": "^1.85.0",
     "hammerjs": "^2.0.8",
     "markdown-it": "^8.4.2",
     "markdown-it-sanitizer": "^0.4.3"
@@ -24,5 +27,21 @@
   "bugs": {
     "url": "https://github.com/richard1015/cesium-navigation-es6/issues"
   },
-  "homepage": "https://github.com/richard1015/cesium-navigation-es6#readme"
+  "homepage": "https://github.com/richard1015/cesium-navigation-es6#readme",
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.3.0",
+    "html-webpack-plugin": "^5.3.2",
+    "less": "^4.1.1",
+    "less-loader": "^10.0.1",
+    "mini-css-extract-plugin": "^2.3.0",
+    "path-browserify": "^1.0.1",
+    "style-loader": "1.3.0",
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1"
+  }
 }

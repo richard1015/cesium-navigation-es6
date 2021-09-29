@@ -1,4 +1,4 @@
-import { defined, DeveloperError, knockout } from 'cesium/Source/Cesium.js'
+import { defined, DeveloperError, knockout } from 'cesium'
 
 var Knockout = knockout;
 /**

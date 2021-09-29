@@ -2,17 +2,20 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require("terser-webpack-plugin");
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyDirWebpackPlugin = require('./webapck-plugin-copy');
+const config = require('../package.json');
+const Webpack = require('webpack');
 const rootPath = "../dist";
 const plugins = [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
-    new CopyWebpackPlugin({
-        patterns: [
-            { from: 'src', to: '' },
-            // { from: 'dist/CesiumNavigation.umd.js', to: path.resolve('./public') },//拷贝至静态目录测试umd
-        ],
+    new Webpack.BannerPlugin({
+        banner: `${config.name} v${config.version} - [filebase], [hash], ${new Date()}`
     }),
+    new CopyDirWebpackPlugin([
+        { from: 'src', to: path.resolve(__dirname, rootPath) },
+        { from: path.resolve(__dirname, `${rootPath}/CesiumNavigation.umd.js`), to: path.resolve('./public/CesiumNavigation.umd.js') },//拷贝至静态目录测试umd
+    ]),
 ]
 
 module.exports = {

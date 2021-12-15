@@ -1,10 +1,11 @@
 import "../node_modules/cesium/Build/Cesium/Widgets/widgets.css"
-import { Viewer, Rectangle } from "cesium";
+import { Viewer, Rectangle, ArcGisMapServerImageryProvider } from "cesium";
 import CesiumNavigation from "../src/CesiumNavigation";
 
-const viewer = new Viewer("cesiumContainer",{
-    animation:false,
-    timeline:false
+const viewer = new Viewer('cesiumContainer', {
+    imageryProvider: new ArcGisMapServerImageryProvider({ url: "https://elevation3d.arcgis.com/arcgis/rest/services/World_Imagery/MapServer" }),
+    animation: false,
+    timeline: false
 });
 
 const options = {};

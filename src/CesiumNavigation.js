@@ -89,7 +89,6 @@ function initialize(viewerCesiumWidget, options) {
   var container = document.createElement('div')
   container.className = 'cesium-widget-cesiumNavigationContainer'
   cesiumWidget.container.appendChild(container)
-  console.log(viewerCesiumWidget);
   this.terria = viewerCesiumWidget
   this.terria.options = (defined(options)) ? options : {}
   this.terria.afterWidgetChanged = new CesiumEvent()

@@ -2,7 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyDirWebpackPlugin = require('./webapck-plugin-copy');
 const buildPath = "../build";
 const plugins = [
     new CleanWebpackPlugin(),
@@ -11,11 +12,14 @@ const plugins = [
         minify: true,
     }),
     new MiniCssExtractPlugin(),
-    new CopyWebpackPlugin({
-        patterns: [
-            { from: 'node_modules/cesium/Build/Cesium', to: 'Cesium' },
-        ],
-    }),
+    // new CopyWebpackPlugin({
+    //     patterns: [
+    //         { from: 'node_modules/cesium/Build/Cesium', to: 'Cesium' },
+    //     ],
+    // }),
+    new CopyDirWebpackPlugin([
+        { from: 'node_modules/cesium/Build/Cesium', to: path.resolve(__dirname, `${buildPath}/Cesium`) },
+    ]),
 ]
 module.exports = {
     mode: "production",

@@ -22,7 +22,7 @@
     "url": "git+https://github.com/richard1015/cesium-navigation-es6.git"
   },
   "dependencies": {
-    "cesium": "^1.85.0",
+    "cesium": "^1.87.1",
     "hammerjs": "^2.0.8",
     "markdown-it": "^8.4.2",
     "markdown-it-sanitizer": "^0.4.3"

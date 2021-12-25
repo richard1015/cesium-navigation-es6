@@ -7,7 +7,6 @@ import NavigationViewModel from './viewModels/NavigationViewModel'
 
 
 var CesiumEvent = Event
-var Knockout = knockout
 
 /**
  * @alias CesiumNavigation

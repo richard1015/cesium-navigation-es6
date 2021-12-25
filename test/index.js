@@ -20,4 +20,11 @@ options.enableDistanceLegend = true;
 // 用于启用或禁用指南针外环。true是启用，false是禁用。默认值为true。如果将选项设置为false，则该环将可见但无效。
 options.enableCompassOuterRing = true;
 
+//修改重置视图的tooltip
+options.resetTooltip = "重置视图";
+//修改放大按钮的tooltip
+options.zoomInTooltip = "放大";
+//修改缩小按钮的tooltip
+options.zoomOutTooltip = "缩小";
+
 new CesiumNavigation(viewer, options);

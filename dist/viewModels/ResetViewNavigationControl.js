@@ -1,5 +1,5 @@
 
-import { defined, Camera, Rectangle, Cartographic ,Math as CesiumMath} from 'cesium'
+import { defined, Camera, Rectangle, Cartographic, Math as CesiumMath } from 'cesium'
 import svgReset from '../svgPaths/svgReset'
 import NavigationControl from './NavigationControl'
 
@@ -20,7 +20,7 @@ var ResetViewNavigationControl = function (terria) {
    * This property is observable.
    * @type {String}
    */
-  this.name = '重置视图'
+  this.name = terria.options.resetTooltip ? terria.options.resetTooltip : '重置视图'
   this.navigationLocked = false
 
   /**

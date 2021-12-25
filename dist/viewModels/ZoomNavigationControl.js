@@ -20,7 +20,8 @@ var ZoomNavigationControl = function (terria, zoomIn) {
    * This property is observable.
    * @type {String}
    */
-  this.name = 'Zoom ' + (zoomIn ? 'In' : 'Out')
+  // this.name = 'Zoom ' + (zoomIn ? 'In' : 'Out')
+  this.name = zoomIn ? (terria.options.zoomInTooltip ? terria.options.zoomInTooltip : "放大") : (terria.options.zoomOutTooltip ? terria.options.zoomOutTooltip : "缩小")
 
   /**
    * Gets or sets the text to be displayed in the nav control. Controls that

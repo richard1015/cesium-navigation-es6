@@ -115,6 +115,11 @@ ZoomNavigationControl.prototype.zoom = function (relativeAmount) {
           }
         }
 
+        if (camera.position.z >= 406944828719368.56) {
+          //then run behind code will error
+          return
+        }
+
         var direction = Cartesian3.subtract(camera.position, focus, cartesian3Scratch)
         var movementVector = Cartesian3.multiplyByScalar(direction, relativeAmount, direction)
         var endPosition = Cartesian3.add(focus, movementVector, focus)

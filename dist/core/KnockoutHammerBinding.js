@@ -1,1 +1,30 @@
-import Hammer from"hammerjs";import{knockout}from"cesium";var Knockout=knockout,KnockoutHammerBinding={register:function(n){n.bindingHandlers.swipeLeft={init:function(i,r,t,a,o){var e=n.unwrap(r());new Hammer(i).on("swipeleft",(function(n){var i=o.$data;e.apply(i,arguments)}))}},n.bindingHandlers.swipeRight={init:function(i,r,t,a,o){var e=n.unwrap(r());new Hammer(i).on("swiperight",(function(n){var i=o.$data;e.apply(i,arguments)}))}}}};export default KnockoutHammerBinding;
+/* eslint-disable no-unused-vars */
+import Hammer from 'hammerjs'
+import { knockout } from 'cesium'
+var Knockout = knockout
+var KnockoutHammerBinding = {
+  register: function (Knockout) {
+    Knockout.bindingHandlers.swipeLeft = {
+      init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+        var f = Knockout.unwrap(valueAccessor())
+        new Hammer(element).on('swipeleft', function (e) {
+          var viewModel = bindingContext.$data
+          f.apply(viewModel, arguments)
+        })
+      }
+    }
+
+    Knockout.bindingHandlers.swipeRight = {
+      init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+        var f = Knockout.unwrap(valueAccessor())
+        new Hammer(element).on('swiperight', function (e) {
+          var viewModel = bindingContext.$data
+          f.apply(viewModel, arguments)
+        })
+      }
+    }
+  }
+
+}
+
+export default KnockoutHammerBinding

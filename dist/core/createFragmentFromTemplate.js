@@ -1,1 +1,13 @@
-const createFragmentFromTemplate=function(e){var t=document.createElement("div");t.innerHTML=e;for(var r=document.createDocumentFragment();t.firstChild;)r.appendChild(t.firstChild);return r};export default createFragmentFromTemplate;
+
+const createFragmentFromTemplate = function (htmlString) {
+  var holder = document.createElement('div')
+  holder.innerHTML = htmlString
+  var fragment = document.createDocumentFragment()
+  while (holder.firstChild) {
+    fragment.appendChild(holder.firstChild)
+  }
+
+  return fragment
+}
+
+export default createFragmentFromTemplate

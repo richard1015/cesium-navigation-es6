@@ -1,1 +1,157 @@
-import{defined,DeveloperError,EllipsoidGeodesic,Cartesian2,getTimestamp,EventHelper,knockout}from"cesium";import loadView from"../core/loadView";var Knockout=knockout,DistanceLegendViewModel=function(e){if(!defined(e)||!defined(e.terria))throw new DeveloperError("options.terria is required.");this.terria=e.terria,this._removeSubscription=void 0,this._lastLegendUpdate=void 0,this.eventHelper=new EventHelper,this.distanceLabel=void 0,this.barWidth=void 0,this.enableDistanceLegend=!defined(e.enableDistanceLegend)||e.enableDistanceLegend,Knockout.track(this,["distanceLabel","barWidth"]),this.eventHelper.add(this.terria.afterWidgetChanged,(function(){defined(this._removeSubscription)&&(this._removeSubscription(),this._removeSubscription=void 0)}),this);var i=this;function t(){if(defined(i.terria)){var e=i.terria.scene;i._removeSubscription=e.postRender.addEventListener((function(){updateDistanceLegendCesium(this,e)}),i)}}t(),this.eventHelper.add(this.terria.afterWidgetChanged,(function(){t()}),this)};DistanceLegendViewModel.prototype.destroy=function(){this.eventHelper.removeAll()},DistanceLegendViewModel.prototype.show=function(e){var i;i=this.enableDistanceLegend?'<div class="distance-legend" data-bind="visible: distanceLabel && barWidth"><div class="distance-legend-label" data-bind="text: distanceLabel"></div><div class="distance-legend-scale-bar" data-bind="style: { width: barWidth + \'px\', left: (5 + (125 - barWidth) / 2) + \'px\' }"></div></div>':'<div class="distance-legend"  style="display: none;" data-bind="visible: distanceLabel && barWidth"><div class="distance-legend-label"  data-bind="text: distanceLabel"></div><div class="distance-legend-scale-bar"  data-bind="style: { width: barWidth + \'px\', left: (5 + (125 - barWidth) / 2) + \'px\' }"></div></div>',loadView(i,e,this)},DistanceLegendViewModel.create=function(e){var i=new DistanceLegendViewModel(e);return i.show(e.container),i};var geodesic=new EllipsoidGeodesic,distances=[1,2,3,5,10,20,30,50,100,200,300,500,1e3,2e3,3e3,5e3,1e4,2e4,3e4,5e4,1e5,2e5,3e5,5e5,1e6,2e6,3e6,5e6,1e7,2e7,3e7,5e7];function updateDistanceLegendCesium(e,i){if(!e.enableDistanceLegend)return e.barWidth=void 0,void(e.distanceLabel=void 0);var t=getTimestamp();if(!(t<e._lastLegendUpdate+250)){e._lastLegendUpdate=t;var a=i.canvas.clientWidth,d=i.canvas.clientHeight,n=i.camera.getPickRay(new Cartesian2(a/2|0,d-1)),s=i.camera.getPickRay(new Cartesian2(1+a/2|0,d-1)),r=i.globe,o=r.pick(n,i),c=r.pick(s,i);if(!defined(o)||!defined(c))return e.barWidth=void 0,void(e.distanceLabel=void 0);var l=r.ellipsoid.cartesianToCartographic(o),v=r.ellipsoid.cartesianToCartographic(c);geodesic.setEndPoints(l,v);for(var h,b,p=geodesic.surfaceDistance,g=distances.length-1;!defined(h)&&g>=0;--g)distances[g]/p<100&&(h=distances[g]);if(defined(h))b=h>=1e3?(h/1e3).toString()+" km":h.toString()+" m",e.barWidth=h/p|0,e.distanceLabel=b;else e.barWidth=void 0,e.distanceLabel=void 0}}export default DistanceLegendViewModel;
+/* eslint-disable no-unused-vars */
+import { defined, DeveloperError, EllipsoidGeodesic, Cartesian2, getTimestamp, EventHelper, knockout } from 'cesium'
+import loadView from '../core/loadView'
+var Knockout = knockout
+
+var DistanceLegendViewModel = function (options) {
+  if (!defined(options) || !defined(options.terria)) {
+    throw new DeveloperError('options.terria is required.')
+  }
+
+  this.terria = options.terria
+  this._removeSubscription = undefined
+  this._lastLegendUpdate = undefined
+  this.eventHelper = new EventHelper()
+
+  this.distanceLabel = undefined
+  this.barWidth = undefined
+
+  this.enableDistanceLegend = (defined(options.enableDistanceLegend)) ? options.enableDistanceLegend : true
+
+  Knockout.track(this, ['distanceLabel', 'barWidth'])
+
+  this.eventHelper.add(this.terria.afterWidgetChanged, function () {
+    if (defined(this._removeSubscription)) {
+      this._removeSubscription()
+      this._removeSubscription = undefined
+    }
+  }, this)
+  //        this.terria.beforeWidgetChanged.addEventListener(function () {
+  //            if (defined(this._removeSubscription)) {
+  //                this._removeSubscription();
+  //                this._removeSubscription = undefined;
+  //            }
+  //        }, this);
+
+  var that = this
+
+  function addUpdateSubscription() {
+    if (defined(that.terria)) {
+      var scene = that.terria.scene
+      that._removeSubscription = scene.postRender.addEventListener(function () {
+        updateDistanceLegendCesium(this, scene)
+      }, that)
+    }
+  }
+
+  addUpdateSubscription()
+  this.eventHelper.add(this.terria.afterWidgetChanged, function () {
+    addUpdateSubscription()
+  }, this)
+  // this.terria.afterWidgetChanged.addEventListener(function() {
+  //    addUpdateSubscription();
+  // }, this);
+}
+
+DistanceLegendViewModel.prototype.destroy = function () {
+  this.eventHelper.removeAll()
+}
+
+DistanceLegendViewModel.prototype.show = function (container) {
+  var testing
+  if (this.enableDistanceLegend) {
+    testing = '<div class="distance-legend" data-bind="visible: distanceLabel && barWidth">' +
+      '<div class="distance-legend-label" data-bind="text: distanceLabel"></div>' +
+      '<div class="distance-legend-scale-bar" data-bind="style: { width: barWidth + \'px\', left: (5 + (125 - barWidth) / 2) + \'px\' }"></div>' +
+      '</div>'
+  } else {
+    testing = '<div class="distance-legend"  style="display: none;" data-bind="visible: distanceLabel && barWidth">' +
+      '<div class="distance-legend-label"  data-bind="text: distanceLabel"></div>' +
+      '<div class="distance-legend-scale-bar"  data-bind="style: { width: barWidth + \'px\', left: (5 + (125 - barWidth) / 2) + \'px\' }"></div>' +
+      '</div>'
+  }
+  loadView(testing, container, this)
+  // loadView(distanceLegendTemplate, container, this);
+  // loadView(require('fs').readFileSync(__dirname + '/../Views/DistanceLegend.html', 'utf8'), container, this);
+}
+
+DistanceLegendViewModel.create = function (options) {
+  var result = new DistanceLegendViewModel(options)
+  result.show(options.container)
+  return result
+}
+
+var geodesic = new EllipsoidGeodesic()
+
+var distances = [
+  1, 2, 3, 5,
+  10, 20, 30, 50,
+  100, 200, 300, 500,
+  1000, 2000, 3000, 5000,
+  10000, 20000, 30000, 50000,
+  100000, 200000, 300000, 500000,
+  1000000, 2000000, 3000000, 5000000,
+  10000000, 20000000, 30000000, 50000000]
+
+function updateDistanceLegendCesium(viewModel, scene) {
+  if (!viewModel.enableDistanceLegend) {
+    viewModel.barWidth = undefined
+    viewModel.distanceLabel = undefined
+    return
+  }
+  var now = getTimestamp()
+  if (now < viewModel._lastLegendUpdate + 250) {
+    return
+  }
+
+  viewModel._lastLegendUpdate = now
+
+  // Find the distance between two pixels at the bottom center of the screen.
+  var width = scene.canvas.clientWidth
+  var height = scene.canvas.clientHeight
+
+  var left = scene.camera.getPickRay(new Cartesian2((width / 2) | 0, height - 1))
+  var right = scene.camera.getPickRay(new Cartesian2(1 + (width / 2) | 0, height - 1))
+
+  var globe = scene.globe
+  var leftPosition = globe.pick(left, scene)
+  var rightPosition = globe.pick(right, scene)
+
+  if (!defined(leftPosition) || !defined(rightPosition)) {
+    viewModel.barWidth = undefined
+    viewModel.distanceLabel = undefined
+    return
+  }
+
+  var leftCartographic = globe.ellipsoid.cartesianToCartographic(leftPosition)
+  var rightCartographic = globe.ellipsoid.cartesianToCartographic(rightPosition)
+
+  geodesic.setEndPoints(leftCartographic, rightCartographic)
+  var pixelDistance = geodesic.surfaceDistance
+
+  // Find the first distance that makes the scale bar less than 100 pixels.
+  var maxBarWidth = 100
+  var distance
+  for (var i = distances.length - 1; !defined(distance) && i >= 0; --i) {
+    if (distances[i] / pixelDistance < maxBarWidth) {
+      distance = distances[i]
+    }
+  }
+
+  if (defined(distance)) {
+    var label
+    if (distance >= 1000) {
+      label = (distance / 1000).toString() + ' km'
+    } else {
+      label = distance.toString() + ' m'
+    }
+
+    viewModel.barWidth = (distance / pixelDistance) | 0
+    viewModel.distanceLabel = label
+  } else {
+    viewModel.barWidth = undefined
+    viewModel.distanceLabel = undefined
+  }
+}
+
+export default DistanceLegendViewModel

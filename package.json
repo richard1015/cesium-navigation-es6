@@ -1,6 +1,6 @@
 {
   "name": "cesium-navigation-es6",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "cesium-navigation-es6",
   "main": "dist/CesiumNavigation.umd.js",
   "module": "dist/CesiumNavigation.js",

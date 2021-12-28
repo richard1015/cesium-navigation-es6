@@ -79,7 +79,6 @@ new CesiumNavigation(viewer, options);
 ``` javascript
 import {  Viewer,Rectangle} from "cesium";
 import 'cesium/Build/Cesium/Widgets/widgets.css';
-import CesiumNavigation from "cesium-navigation-es6";
 
 const viewer = new Viewer("cesiumContainer",{
     animation:false,

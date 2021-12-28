@@ -15,7 +15,6 @@ var loadView = function (htmlString, container, viewModel) {
 
   var i
   for (i = 0; i < fragment.childNodes.length; ++i) {
-  console.log(fragment.childNodes[i]);
     nodes.push(fragment.childNodes[i])
   }
 

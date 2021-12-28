@@ -1,0 +1,77 @@
+@compass-width: 125px; //与svg的对应
+@compass-gyro-bg-top: (@compass-width - 35px)*0.5;
+@compass-gyro-top: (@compass-width - 26px)*0.5;
+@compass-outer-ring-background-radius: 20px;
+@compass-outer-ring-background-width: @compass-width - @compass-outer-ring-background-radius*2;
+@compass-select-color: #1890ff;
+@compass-gyro-background-color: #fff;
+@compass-outer-ring-bg-color: rgb(63, 72, 84, 0.5);
+@compass-gyro-color: rgb(63, 72, 84);
+
+.compass {
+    bottom: 100px;
+    right: 5px;
+    top: auto;
+    width: @compass-width;
+    height: @compass-width;
+}
+
+.compass-outer-ring-background {
+    top: 0px;
+    left: 0px;
+    width: @compass-outer-ring-background-width;
+    height: @compass-outer-ring-background-width;
+    border-radius: 50%;
+    border: @compass-outer-ring-background-radius solid transparent;
+}
+
+.compass-outer-ring {
+    width: @compass-width;
+    height: @compass-width;
+    fill: @compass-outer-ring-bg-color;
+}
+
+.compass-gyro {
+    width: @compass-width;
+    height: @compass-width;
+    top: @compass-gyro-top;
+    left: @compass-gyro-top;
+    fill: @compass-gyro-color;
+}
+
+.compass-rotation-marker {
+    width: @compass-width;
+    height: @compass-width;
+    fill: @compass-select-color;
+    z-index: 10;
+}
+
+
+.compass-gyro-background {
+    top: @compass-gyro-bg-top;
+    left: @compass-gyro-bg-top;
+    background-color: @compass-gyro-background-color;
+}
+
+.compass-gyro-background:hover+.compass-gyro {
+    fill: @compass-select-color;
+}
+
+
+.navigation-controls {
+    bottom: 60px;
+    top: auto;
+    width: 90px;
+    right: 20px;
+    background-color: @compass-gyro-color;
+}
+
+.navigation-control {
+    border: none;
+}
+
+.distance-legend {
+    background-color: @compass-gyro-color;
+    border-radius: 0px;
+    left: 5px;
+}

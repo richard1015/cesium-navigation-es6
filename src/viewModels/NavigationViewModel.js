@@ -6,7 +6,6 @@ import svgCompassOuterRing from '../svgPaths/svgCompassOuterRing'
 import svgCompassGyro from '../svgPaths/svgCompassGyro'
 import svgCompassRotationMarker from '../svgPaths/svgCompassRotationMarker'
 import Utils from '../core/Utils'
-// var CesiumMath = Math;
 var Knockout = knockout;
 
 var NavigationViewModel = function (options) {
@@ -15,9 +14,6 @@ var NavigationViewModel = function (options) {
   this.enableZoomControls = (defined(options.enableZoomControls)) ? options.enableZoomControls : true
   this.enableCompass = (defined(options.enableCompass)) ? options.enableCompass : true
   this.navigationLocked = false
-
-  // if (this.showZoomControls)
-  //   {
   this.controls = options.controls
   if (!defined(this.controls)) {
     this.controls = [
@@ -26,7 +22,6 @@ var NavigationViewModel = function (options) {
       new ZoomNavigationControl(this.terria, false)
     ]
   }
-  // }
 
   this.svgCompassOuterRing = svgCompassOuterRing
   this.svgCompassGyro = svgCompassGyro
@@ -93,96 +88,63 @@ var NavigationViewModel = function (options) {
 
 NavigationViewModel.prototype.destroy = function () {
   this.eventHelper.removeAll()
-
-  // loadView(require('fs').readFileSync(baseURLEmpCesium + 'js-lib/terrajs/lib/Views/Navigation.html', 'utf8'), container, this);
 }
 
 NavigationViewModel.prototype.show = function (container) {
-  var testing
-  if (this.enableZoomControls && this.enableCompass) {
-    testing = '<div class="compass" title="" data-bind="visible: showCompass, event: { mousedown: handleMouseDown, dblclick: handleDoubleClick }">' +
-      '<div class="compass-outer-ring-background"></div>' +
-      ' <div class="compass-rotation-marker" data-bind="visible: isOrbiting, style: { transform: \'rotate(-\' + orbitCursorAngle + \'rad)\', \'-webkit-transform\': \'rotate(-\' + orbitCursorAngle + \'rad)\', opacity: orbitCursorOpacity }, cesiumSvgPath: { path: svgCompassRotationMarker, width: 145, height: 145 }"></div>' +
-      ' <div class="compass-outer-ring" title="" data-bind="style: { transform: \'rotate(-\' + heading + \'rad)\', \'-webkit-transform\': \'rotate(-\' + heading + \'rad)\' }, cesiumSvgPath: { path: svgCompassOuterRing, width: 145, height: 145 }"></div>' +
-      ' <div class="compass-gyro-background"></div>' +
-      ' <div class="compass-gyro" data-bind="cesiumSvgPath: { path: svgCompassGyro, width: 145, height: 145 }, css: { \'compass-gyro-active\': isOrbiting }"></div>' +
-      '</div>' +
-      '<div class="navigation-controls">' +
-      '<!-- ko foreach: controls -->' +
-      '<div data-bind="click: activate, attr: { title: $data.name }, css: $root.isLastControl($data) ? \'navigation-control-last\' : \'navigation-control\' ">' +
-      '   <!-- ko if: $data.hasText -->' +
-      '   <div data-bind="text: $data.text, css: $data.isActive ?  \'navigation-control-icon-active \' + $data.cssClass : $data.cssClass"></div>' +
-      '   <!-- /ko -->' +
-      '  <!-- ko ifnot: $data.hasText -->' +
-      '  <div data-bind="cesiumSvgPath: { path: $data.svgIcon, width: $data.svgWidth, height: $data.svgHeight }, css: $data.isActive ?  \'navigation-control-icon-active \' + $data.cssClass : $data.cssClass"></div>' +
-      '  <!-- /ko -->' +
-      ' </div>' +
-      ' <!-- /ko -->' +
-      '</div>'
-  } else if (!this.enableZoomControls && this.enableCompass) {
-    testing = '<div class="compass" title="" data-bind="visible: showCompass, event: { mousedown: handleMouseDown, dblclick: handleDoubleClick }">' +
-      '<div class="compass-outer-ring-background"></div>' +
-      ' <div class="compass-rotation-marker" data-bind="visible: isOrbiting, style: { transform: \'rotate(-\' + orbitCursorAngle + \'rad)\', \'-webkit-transform\': \'rotate(-\' + orbitCursorAngle + \'rad)\', opacity: orbitCursorOpacity }, cesiumSvgPath: { path: svgCompassRotationMarker, width: 145, height: 145 }"></div>' +
-      ' <div class="compass-outer-ring" title="" data-bind="style: { transform: \'rotate(-\' + heading + \'rad)\', \'-webkit-transform\': \'rotate(-\' + heading + \'rad)\' }, cesiumSvgPath: { path: svgCompassOuterRing, width: 145, height: 145 }"></div>' +
-      ' <div class="compass-gyro-background"></div>' +
-      ' <div class="compass-gyro" data-bind="cesiumSvgPath: { path: svgCompassGyro, width: 145, height: 145 }, css: { \'compass-gyro-active\': isOrbiting }"></div>' +
-      '</div>' +
-      '<div class="navigation-controls"  style="display: none;" >' +
-      '<!-- ko foreach: controls -->' +
-      '<div data-bind="click: activate, attr: { title: $data.name }, css: $root.isLastControl($data) ? \'navigation-control-last\' : \'navigation-control\' ">' +
-      '   <!-- ko if: $data.hasText -->' +
-      '   <div data-bind="text: $data.text, css: $data.isActive ?  \'navigation-control-icon-active \' + $data.cssClass : $data.cssClass"></div>' +
-      '   <!-- /ko -->' +
-      '  <!-- ko ifnot: $data.hasText -->' +
-      '  <div data-bind="cesiumSvgPath: { path: $data.svgIcon, width: $data.svgWidth, height: $data.svgHeight }, css: $data.isActive ?  \'navigation-control-icon-active \' + $data.cssClass : $data.cssClass"></div>' +
-      '  <!-- /ko -->' +
-      ' </div>' +
-      ' <!-- /ko -->' +
-      '</div>'
-  } else if (this.enableZoomControls && !this.enableCompass) {
-    testing = '<div class="compass"  style="display: none;" title="" data-bind="visible: showCompass, event: { mousedown: handleMouseDown, dblclick: handleDoubleClick }">' +
-      '<div class="compass-outer-ring-background"></div>' +
-      ' <div class="compass-rotation-marker" data-bind="visible: isOrbiting, style: { transform: \'rotate(-\' + orbitCursorAngle + \'rad)\', \'-webkit-transform\': \'rotate(-\' + orbitCursorAngle + \'rad)\', opacity: orbitCursorOpacity }, cesiumSvgPath: { path: svgCompassRotationMarker, width: 145, height: 145 }"></div>' +
-      ' <div class="compass-outer-ring" title="" data-bind="style: { transform: \'rotate(-\' + heading + \'rad)\', \'-webkit-transform\': \'rotate(-\' + heading + \'rad)\' }, cesiumSvgPath: { path: svgCompassOuterRing, width: 145, height: 145 }"></div>' +
-      ' <div class="compass-gyro-background"></div>' +
-      ' <div class="compass-gyro" data-bind="cesiumSvgPath: { path: svgCompassGyro, width: 145, height: 145 }, css: { \'compass-gyro-active\': isOrbiting }"></div>' +
-      '</div>' +
-      '<div class="navigation-controls"    >' +
-      '<!-- ko foreach: controls -->' +
-      '<div data-bind="click: activate, attr: { title: $data.name }, css: $root.isLastControl($data) ? \'navigation-control-last\' : \'navigation-control\' ">' +
-      '   <!-- ko if: $data.hasText -->' +
-      '   <div data-bind="text: $data.text, css: $data.isActive ?  \'navigation-control-icon-active \' + $data.cssClass : $data.cssClass"></div>' +
-      '   <!-- /ko -->' +
-      '  <!-- ko ifnot: $data.hasText -->' +
-      '  <div data-bind="cesiumSvgPath: { path: $data.svgIcon, width: $data.svgWidth, height: $data.svgHeight }, css: $data.isActive ?  \'navigation-control-icon-active \' + $data.cssClass : $data.cssClass"></div>' +
-      '  <!-- /ko -->' +
-      ' </div>' +
-      ' <!-- /ko -->' +
-      '</div>'
-  } else if (!this.enableZoomControls && !this.enableCompass) {
-    testing = '<div class="compass"  style="display: none;" title="" data-bind="visible: showCompass, event: { mousedown: handleMouseDown, dblclick: handleDoubleClick }">' +
-      '<div class="compass-outer-ring-background"></div>' +
-      ' <div class="compass-rotation-marker" data-bind="visible: isOrbiting, style: { transform: \'rotate(-\' + orbitCursorAngle + \'rad)\', \'-webkit-transform\': \'rotate(-\' + orbitCursorAngle + \'rad)\', opacity: orbitCursorOpacity }, cesiumSvgPath: { path: svgCompassRotationMarker, width: 145, height: 145 }"></div>' +
-      ' <div class="compass-outer-ring" title="" data-bind="style: { transform: \'rotate(-\' + heading + \'rad)\', \'-webkit-transform\': \'rotate(-\' + heading + \'rad)\' }, cesiumSvgPath: { path: svgCompassOuterRing, width: 145, height: 145 }"></div>' +
-      ' <div class="compass-gyro-background"></div>' +
-      ' <div class="compass-gyro" data-bind="cesiumSvgPath: { path: svgCompassGyro, width: 145, height: 145 }, css: { \'compass-gyro-active\': isOrbiting }"></div>' +
-      '</div>' +
-      '<div class="navigation-controls"   style="display: none;" >' +
-      '<!-- ko foreach: controls -->' +
-      '<div data-bind="click: activate, attr: { title: $data.name }, css: $root.isLastControl($data) ? \'navigation-control-last\' : \'navigation-control\' ">' +
-      '   <!-- ko if: $data.hasText -->' +
-      '   <div data-bind="text: $data.text, css: $data.isActive ?  \'navigation-control-icon-active \' + $data.cssClass : $data.cssClass"></div>' +
-      '   <!-- /ko -->' +
-      '  <!-- ko ifnot: $data.hasText -->' +
-      '  <div data-bind="cesiumSvgPath: { path: $data.svgIcon, width: $data.svgWidth, height: $data.svgHeight }, css: $data.isActive ?  \'navigation-control-icon-active \' + $data.cssClass : $data.cssClass"></div>' +
-      '  <!-- /ko -->' +
-      ' </div>' +
-      ' <!-- /ko -->' +
-      '</div>'
-  }
+  const closeStr = '</div>'
+  const divCloseStr = '>'
+  const hiddenStr = ' style="display: none;"'
+
+  const compassPre = '<div class="compass"'
+  const compassPreAfter = 'title="" data-bind="visible: showCompass, event: { mousedown: handleMouseDown, dblclick: handleDoubleClick }">'
+  const compassOuterRingBackground = '<div class="compass-outer-ring-background"></div>'
+
+  const compassRotationMarkerPre = ' <div class="compass-rotation-marker" data-bind="visible: isOrbiting, style: { transform: \'rotate(-\' + orbitCursorAngle + \'rad)\', \'-webkit-transform\': \'rotate(-\' + orbitCursorAngle + \'rad)\', opacity: orbitCursorOpacity }'
+  const compassRotationMarkerDefaultSvg = compassRotationMarkerPre + ', cesiumSvgPath: { path: svgCompassRotationMarker, width: 145, height: 145 }"' + divCloseStr
+  const compassRotationMarkerSelf = compassRotationMarkerPre + '"' + divCloseStr + this.terria.options.compassRotationMarkerSvg //self define svg
+  const compassRotationMarker = (this.terria.options.compassRotationMarkerSvg ? compassRotationMarkerSelf : compassRotationMarkerDefaultSvg) + closeStr
+
+  const compassOuterRingPre = ' <div class="compass-outer-ring" title="" data-bind="style: { transform: \'rotate(-\' + heading + \'rad)\', \'-webkit-transform\': \'rotate(-\' + heading + \'rad)\' }'
+  const compassOuterRingDefaultSvg = compassOuterRingPre + ', cesiumSvgPath: { path: svgCompassOuterRing, width: 145, height: 145 }"' + divCloseStr
+  const compassOuterRingSelf = compassOuterRingPre + '"' + divCloseStr + this.terria.options.compassOuterRingSvg //self define svg
+  const compassOuterRing = (this.terria.options.compassOuterRingSvg ? compassOuterRingSelf : compassOuterRingDefaultSvg) + closeStr
+
+
+  const compassGyroBackground = ' <div class="compass-gyro-background"></div>'
+  const compassGyroPre = ' <div class="compass-gyro" data-bind="css: { \'compass-gyro-active\': isOrbiting }'
+  const compassGyroDefaultSvg = compassGyroPre + ',cesiumSvgPath: { path: svgCompassGyro, width: 145, height: 145 } "' + divCloseStr
+  const compassGyroSelf = compassGyroPre + '"' + divCloseStr + this.terria.options.compassGyroSvg
+  const compassGyro = (this.terria.options.compassGyroSvg ? compassGyroSelf : compassGyroDefaultSvg) + closeStr
+
+  const compassDivPublicStr = compassPreAfter +
+    compassOuterRingBackground +
+    compassRotationMarker +
+    compassOuterRing +
+    compassGyroBackground +
+    compassGyro +
+    closeStr
+  const compassDivStr = compassPre + compassDivPublicStr
+  const compassDivHiddenStr = compassPre + hiddenStr + compassDivPublicStr
+
+  const navigationControlsPre = '<div class="navigation-controls"'
+
+  const navigationControlsDivPublicStr = divCloseStr + '<!-- ko foreach: controls -->' +
+    '<div data-bind="click: activate, attr: { title: $data.name }, css: $root.isLastControl($data) ? \'navigation-control-last\' : \'navigation-control\' ">' +
+    '   <!-- ko if: $data.hasText -->' +
+    '   <div data-bind="text: $data.text, css: $data.isActive ?  \'navigation-control-icon-active \' + $data.cssClass : $data.cssClass"></div>' +
+    '   <!-- /ko -->' +
+    '  <!-- ko ifnot: $data.hasText -->' +
+    '  <div data-bind="cesiumSvgPath: { path: $data.svgIcon, width: $data.svgWidth, height: $data.svgHeight }, css: $data.isActive ?  \'navigation-control-icon-active \' + $data.cssClass : $data.cssClass"></div>' +
+    '  <!-- /ko -->' +
+    ' </div>' +
+    ' <!-- /ko -->' +
+    closeStr
+
+  const navigationControlsDivStr = navigationControlsPre + navigationControlsDivPublicStr
+  const navigationControlsDivHiddenStr = navigationControlsPre + hiddenStr + divCloseStr + navigationControlsDivPublicStr
+
+  const testing = (this.enableCompass ? compassDivStr : compassDivHiddenStr) + (this.enableZoomControls ? navigationControlsDivStr : navigationControlsDivHiddenStr)
   loadView(testing, container, this)
-  // loadView(navigatorTemplate, container, this);
-  // loadView(require('fs').readFileSync(baseURLEmpCesium + 'js-lib/terrajs/lib/Views/Navigation.html', 'utf8'), container, this);
 }
 
 /**
@@ -307,8 +269,6 @@ NavigationViewModel.prototype.handleDoubleClick = function (viewModel, e) {
 }
 
 NavigationViewModel.create = function (options) {
-  // options.enableZoomControls = this.enableZoomControls;
-  // options.enableCompass = this.enableCompass;
   var result = new NavigationViewModel(options)
   result.show(options.container)
   return result

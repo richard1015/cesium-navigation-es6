@@ -2,25 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const buildPath = "../build";
 const publicPath = "../public";
-const CopyDirWebpackPlugin = require('./webapck-plugin-copy');
-
 const plugins = [
     new HtmlWebpackPlugin({
         template: './public/index.html',
         minify: true,
     }),
     new MiniCssExtractPlugin(),
-    // new CopyWebpackPlugin({
-    //     patterns: [
-    //         { from: 'node_modules/cesium/Build/Cesium', to: 'Cesium' },
-    //     ],
-    // }),
-    new CopyDirWebpackPlugin([
-        { from: 'node_modules/cesium/Build/Cesium', to: path.resolve(__dirname, `${publicPath}/Cesium`) },
-    ]),
     new webpack.DefinePlugin({
         CESIUM_BASE_URL: JSON.stringify('./Cesium/')
     })

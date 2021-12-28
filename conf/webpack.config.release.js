@@ -15,6 +15,7 @@ const plugins = [
     new CopyDirWebpackPlugin([
         { from: 'src', to: path.resolve(__dirname, rootPath) },
         { from: path.resolve(__dirname, `${rootPath}/CesiumNavigation.umd.js`), to: path.resolve('./public/CesiumNavigation.umd.js') },//拷贝至静态目录测试umd
+        { from: 'node_modules/cesium/Build/Cesium', to: path.resolve(__dirname, `../public/Cesium`) },
     ]),
 ]
 

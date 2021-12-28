@@ -1,10 +1,12 @@
+@navigation-button-height: 30px;
+
 .navigation-controls {
     //.floating-vertical;
-    position: absolute; 
+    position: absolute;
     right: 30px;
     top: 210px;
     width: 30px;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     font-weight: 300;
     // avoids selection of text with rapid zooming
     -webkit-touch-callout: none;
@@ -18,10 +20,13 @@
 .navigation-control {
     .clickable;
     border-bottom: @floating-element-border;
+    width: @navigation-button-height;
+    height: @navigation-button-height;
+    float: left;
 }
 
 .naviagation-control:active {
-  color: #FFF;
+    color: #FFF;
 }
 
 .navigation-control-last {
@@ -50,8 +55,7 @@
     width: 10px;
     height: 10px;
     fill: fade(@floating-text-color, 80%);
-    padding-top: 6px;
-    padding-bottom: 6px;
+    padding-top: (@navigation-button-height - 10px);
     box-sizing: content-box;
 }
 
@@ -75,7 +79,7 @@
     top: 0;
     width: @compass-diameter;
     height: @compass-diameter;
-    fill: rgba(255,255,255,0.5);
+    fill: rgba(255, 255, 255, 0.5);
 }
 
 .compass-outer-ring-background {
@@ -110,11 +114,11 @@
     height: 33px;
     border-radius: 33px;
     background-color: @floating-background-color;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     box-sizing: content-box;
 }
 
-.compass-gyro-background:hover + .compass-gyro {
+.compass-gyro-background:hover+.compass-gyro {
     fill: @highlight-color;
 }
 
@@ -126,11 +130,17 @@
     fill: @highlight-color;
 }
 
+
+
+
+
 // Don't display the nav controls on small screens like mobile phones.
-@media screen and (max-width: 700px), screen and (max-height: 420px) {
+@media screen and (max-width: 700px),
+screen and (max-height: 420px) {
     .navigation-controls {
         display: none;
     }
+
     .compass {
         display: none;
     }
@@ -140,6 +150,7 @@
     .navigation-controls {
         display: none;
     }
+
     .compass {
         display: none;
     }

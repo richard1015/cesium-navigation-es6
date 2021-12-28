@@ -1,0 +1,66 @@
+.compass {
+    bottom: 100px;
+    right: 5px;
+    top: auto;
+    width: 125px;
+    height: 125px;
+}
+
+.compass-outer-ring-background {
+    top: 0px;
+    left: 0px;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    border: 20px solid #000306;
+}
+
+.compass-outer-ring {
+    width: 125px;
+    height: 125px;
+    fill: rgb(63, 72, 84, 0.5);
+}
+
+.compass-gyro {
+    width: 125px;
+    height: 125px;
+    top: 49px;
+    left: 49px;
+    fill: rgb(63, 72, 84);
+}
+
+.compass-rotation-marker {
+    width: 125px;
+    height: 125px;
+    fill: #1890ff;
+    z-index: 10;
+}
+
+.compass-gyro-background {
+    top: 45px;
+    left: 45px;
+    background-color: #fff;
+}
+
+.compass-gyro-background:hover+.compass-gyro {
+    fill: #1890ff;
+}
+
+.navigation-controls {
+    bottom: 60px;
+    top: auto;
+    width: 90px;
+    right: 20px;
+    background-color: rgb(63, 72, 84);
+}
+
+
+.navigation-control {
+    border: none;
+}
+
+.distance-legend {
+    background-color: rgb(63, 72, 84);
+    border-radius: 0px;
+    left: 5px;
+}
